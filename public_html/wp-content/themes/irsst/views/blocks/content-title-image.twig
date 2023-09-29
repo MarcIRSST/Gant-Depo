@@ -1,0 +1,12 @@
+{% set title = fields["title"] %}
+{% set image = fields["image"] %}
+{% set color = fields["text_color"] %}
+
+<div class="title-image-ctn">
+    {% if image %}
+        <img src="{{ image }}" alt="">
+    {% endif %}
+    {% if title %}
+        <h3 style="--color: {{ color }}">{{ title }}</h3>
+    {% endif %}
+</div>

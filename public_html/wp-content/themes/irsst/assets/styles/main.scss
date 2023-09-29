@@ -1,0 +1,26 @@
+@import "configs/reset";
+@import "configs/mixins";
+@import "configs/variables";
+@import "configs/icons";
+@import "configs/grid";
+@import "configs/gutenberg";
+
+@import "commons/global";
+@import "commons/print";
+@import "commons/buttons";
+
+@import "partials/header";
+@import "partials/footer";
+@import "partials/navigation";
+@import "partials/infobox";
+@import "partials/home-page-cta";
+
+@import "pages/guide";
+@import "pages/page";
+@import "pages/front-page";
+@import "pages/404";
+
+@import "blocks/accordion_gutenberg";
+@import "blocks/title-image_gutenberg";
+@import "blocks/cta_gutenberg";
+@import "blocks/pictogram-gutenberg";

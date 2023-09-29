@@ -1,0 +1,39 @@
+.content-cta {
+    @include flex(center, space-between, row);
+    background-color: $grey;
+    padding: 40px;
+    margin-top: clamp(2.5rem, 1.6197rem + 3.7559vw, 5rem);
+    margin-bottom: clamp(2.5rem, 1.6197rem + 3.7559vw, 5rem);
+
+    &.vertical {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .text-content {
+        margin-right: 30px;
+    }
+
+    h3 {
+        margin: 0 0 20px;
+        color: $blue;
+    }
+
+    p {
+        @include fontSize(16px, 24px, 600);
+        margin-bottom: 0;
+        color: #505767;
+    }
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 20px;
+
+        .text-content {
+            margin-bottom: 20px;
+            margin-right: 0;
+        }
+    }
+}

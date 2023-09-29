@@ -1,0 +1,26 @@
+<footer class="footer">
+    <div class="container-large">
+        <div class="main-footer">
+            <p>{{ __('Ce site est une réalisation de l\'Institut de recherche Robert-Sauvé en santé et en sécurité du travail (IRSST)', 'irsst') }}</p>
+            <img src="{{ theme.link }}/assets/images/new_logo_footer.png" alt="Logo IRSST">
+        </div>
+
+        <div class="sub-footer">
+            <p>© {{ "now"|date('Y') }} IRSST</p>
+            <nav>
+                <ul>
+                    {% for item in menu_footer.items %}
+                        <li>
+                            <a href="{{ item.url }}">{{ item.title}}</a>
+                        </li>
+                    {% endfor %}
+                    <li>{{ __("Site par", "irsst")}} <a href="https://kryzalid.net" target="_blank"><strong>Kryzalid</strong></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLG74N"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</footer>

@@ -1,0 +1,17 @@
+{% set title = fields["title"] %}
+{% set text = fields["text"] %}
+{% set btn = fields["button"] %}
+
+<div class="content-cta {{ fields["direction"] ? 'vertical' : '' }}">
+    <div class="text-content">
+        {% if title %}
+            <h3>{{ title }}</h3>
+        {% endif %}
+        {% if text %}
+            <p>{{ text }}</p>
+        {% endif %}
+    </div>
+    {% if btn %}
+        <a class="button primary link" href="{{ btn.url }}">{{ btn.title }}</a>
+    {% endif %}
+</div>

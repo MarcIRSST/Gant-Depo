@@ -1,0 +1,24 @@
+.content-pictogram {
+    @include flex(center, flex-start, row, 20px);
+    margin: 14px 0;
+
+    .img-content {
+        flex: 0 0 200px;
+    }
+
+    .text-content {
+        p {
+            margin: 0 0 4px;
+            &:first-child { font-weight: 700; }
+        }
+    }
+
+    @media (max-width: $tablet) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .img-content {
+            flex-basis: auto;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{% set textFields = { 
+    'Application': fields.application, 
+    'Pictogramme': fields.picto,
+    'Niveaux': fields.levels,
+    'Équivalence avec d\'autres normes': fields.equivalence,
+}|filter(e => e != null) %}
+
+<div class="content-pictogram">
+    {% if fields.image %}
+        <div class="img-content">
+            <img src="{{ fields.image.url }}" alt="{{ fields.title }}">
+        </div>
+    {% endif %}
+
+    <div class="text-content">
+        <p>{{ fields.norm }}</p>
+        {% for title, field in textFields %}
+            <p><strong>{{ title }}</strong>: {{ field }}</p>
+        {% endfor %}
+    </div>
+</div>

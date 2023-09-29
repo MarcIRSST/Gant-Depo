@@ -1,0 +1,127 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+    <div id="guide-form">
+        {% filter shortcodes %}
+            [gravityform id="{{ page.meta('form').id }}" title="false" description="false" ajax="true"][/gravityform]
+        {% endfilter %}
+    </div>
+
+    <div id="popup" class="">
+        <p class="title">Title</p> 
+        <a class="small blue circle close"><i class="icon-close"></i></a>
+        <div class="content">Text</div>
+    </div>
+{% endblock %}
+
+{% block specific_script %}
+    <script type="text/javascript">
+        /*
+            --- These classes can be added to Gravityforms elements for styling/js ---
+
+            .hero
+            Page title, containing a <h1> with an optional <summary>
+
+            .title
+            Section title, containing a <h2> with an optional <p class="precision">
+
+            .question
+            Question text, with a <h3> and an optional <p class="extra warning/danger"> for popup info
+
+            .link-previous-field
+            Add to a conditonnal field following a checkbox/radio list with a conditionnal 'other' field
+            It will be moved via js into the corresponding field
+        */
+
+        jQuery(document).on('gform_post_render', function(event, form_id, current_page) {
+            console.log('Page loaded:', current_page);
+
+            // Force scroll (sometimes doesn't work by default)
+            document.querySelector('.gform_wrapper').scrollIntoView();
+
+            // Since the official form has 3 steps but every page has to be treated as a different step, we force the number
+            const page = current_page >= 2 ? 2 : current_page;
+
+            // Change form header page indicator text
+            const stepNb = document.querySelector('.gf_page_steps .gf_step:last-child .gf_step_number');
+            if (stepNb) {
+                const nbPages = stepNb.innerHTML;
+                setTimeout(() => document.querySelector('.gf_step_active .gf_step_number').innerHTML = `${ page }/3`, 1);
+            }
+
+            // Close popup button
+            const popup = document.getElementById('popup');
+            popup.querySelector('.close').addEventListener('click', event => updatePopup(null));
+            
+            // Wait
+            function wait(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+            // Change popup display/text
+            async function updatePopup (txt, danger = false) {
+                // Close popup if no argument is passed (default close button)
+                if (!txt) return popup.classList.remove('shown');
+
+                const title = popup.querySelector('.title');
+                const content = popup.querySelector('.content');
+
+                // Ignore if popup is open and text is the same
+                if (content.innerHTML === txt && popup.classList.contains('shown')) return;
+
+                // If popup is shown, wait to hide it and clear its content
+                if (popup.classList.contains('shown')) {
+                    popup.classList.remove('shown');
+                    await wait(400);
+                    content.innerHTML = '';
+                }
+                
+                // Change popup content and show it
+                content.innerHTML = txt;
+                title.innerHTML = danger ? 'Danger' : 'Bon à savoir';
+                popup.classList.add('shown');
+                if (danger) popup.classList.add('danger');
+                else popup.classList.remove('danger');
+            }
+
+            // Clear popups on page load
+            updatePopup();
+
+            // Insert helper popup buttons
+            let previousParent;
+            const btns = document.querySelectorAll('.extra');
+            btns.forEach(e => {
+                const btn = document.createElement('a');
+                btn.classList.add('circle');
+
+                // If there is already a button for this parent, offset Y position
+                const isMobile = window.innerWidth < 768;
+                if (e.parentElement === previousParent) btn.style[isMobile ? 'marginLeft' : 'marginTop'] = '56px';
+                previousParent = e.parentElement;
+
+                // Append danger class 
+                const danger = e.classList.contains('danger');
+                if (danger) btn.classList.add('danger');
+
+                // Append button to current question
+                e.parentElement.prepend(btn);
+
+                // Add class to gfield (used in mobile)
+                e.parentElement.classList.add('has-btn');
+
+                // Open popup on click
+                btn.addEventListener('click', event => {
+                    updatePopup(e.innerHTML, danger);
+                })
+            });
+
+            // Rename NEXT button (prevents gravityforms label bug)
+            const nbPages = [...document.querySelectorAll('.gform-body > div')].length;
+            document.querySelectorAll('.gform_next_button').forEach(e => {
+              e.value = current_page == 1 
+                ? 'Passer à l\'étape 2'
+                : current_page >= nbPages
+                  ? 'Télécharger la trousse'
+                  : 'Questions suivantes';
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,10 @@
+<div class="content-infobox-ctn infobox {{ fields.type }}">
+    <h3 class="title">
+        {{ fields.type == 'warning' ? 'Bon à savoir' : '' }}
+        {{ fields.type == 'conseil' ? 'Conseil' : '' }}
+        {{ fields.type == 'danger' ? 'Danger!' : '' }}
+    </h3>
+    <div class="content">
+        {{ fields.text }}
+    </div>
+</div>

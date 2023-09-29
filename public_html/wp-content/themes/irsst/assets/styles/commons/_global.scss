@@ -1,0 +1,92 @@
+html {
+    scroll-behavior: smooth;
+}
+
+// body {
+//     color: $blue;
+//     @include fontSize(18px, 30px, 400);
+//     font-family: $secondaryFont;
+// }
+
+h1, h2, h3, h4 {
+    // font-family: $primaryFont;
+
+    // Yellow line under title
+    &.underline {
+        &::after {
+            @include pseudoElement();
+            width: 150px;
+            height: 3px;
+            margin-top: 26px;
+            background-color: $yellow;
+        }
+    }
+}
+
+h4 { margin-bottom: 0px; }
+
+// h1 {
+//     @include fontSize(58px, 65px, 400);
+// }
+
+// h2 {
+//     @include fontSize(40px, 45px, 500);
+// }
+
+// h3 {
+//     @include fontSize(28px, 34px, 500, -0.5px);
+// }
+
+// h4 {
+//     @include fontSize(25px, 28px, 600);
+// }
+
+p {
+    &.precision { @include fontSize(15px, 20px); }
+}
+
+// Big-numbered list
+ol {
+    position: relative;
+    padding-left: 0;
+    list-style: none;
+    counter-reset: item;
+
+    & > li {
+        min-height: 65px;
+        margin-left: 70px;
+        margin-bottom: 10px;
+        counter-increment: item;
+        
+        &:before {
+            position: absolute;
+            left: 0;
+            @include flex();
+            content: counter(item);
+            background: $grey;
+            border-radius: 50%;
+            color: $blue;
+            width: 50px;
+            height: 50px;
+            @extend h3;
+        }
+    }
+
+    ul { list-style-type: disc; }
+}
+
+.gutenberg a{
+    text-decoration: underline;
+}
+
+.wp-element-button{
+    text-decoration: none !important;
+}
+
+@media (max-width: $tablet) {
+    body { @include fontSize(16px, 26px, 400); }
+    h1 { @include fontSize(40px, 45px, 400); }
+    h2 { @include fontSize(35px, 42px, 500); }
+    h3 { @include fontSize(26px, 34px, 500); }
+    h4 { @include fontSize(20px, 24px, 500); }
+}

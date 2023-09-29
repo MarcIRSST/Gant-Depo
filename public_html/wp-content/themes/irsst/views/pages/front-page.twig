@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+{% block content %}
+<div class="home-page">
+
+    <div class="home-header">
+        {% if post.thumbnail.src %}
+            <img class="banner" src=" {{ post.thumbnail.src }} " alt="{{ post.thumbnail.alt ? post.thumbnail.alt : post.title }}" />
+        {% else %}
+            <img class="banner" src="/wp-content/themes/grics/assets/images/GRICS_site_produits.jpeg" alt="" />
+        {% endif %}
+        <div class="home-header-content">
+            {% if post.title %}
+                <h1 class="page-title">{{ post.title }}</h1>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if post.meta('cta') %}
+        {% include 'partials/home-page-cta.twig' with {'cta' : post.meta('cta') } %}
+    {% endif %}
+
+    <div class="container">
+        <div class="page-presentation">
+            <div class="gutenberg">
+                {{ post.content }}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

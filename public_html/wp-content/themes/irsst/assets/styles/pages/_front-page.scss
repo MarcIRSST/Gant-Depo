@@ -1,0 +1,50 @@
+.home-page {
+    .home-header {
+        width: 100%;
+        position: relative;
+        display: flex;
+
+        .banner {
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .home-header-content {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: $yellow;
+            max-width: 770px;
+            padding: 95px 80px;
+            text-align: center;
+
+            .page-title {
+                margin: 0;
+            }
+        }
+    }
+
+    .gutenberg {
+        margin-top: 150px;
+        margin-bottom: 170px;
+    }
+
+    @media (max-width: 992px) {
+
+        .home-header {
+            .home-header-content {
+                padding: 50px 30px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+
+        .home-header {
+            flex-direction: column;
+            .home-header-content {
+                position: initial;
+            }
+        }
+    }
+}

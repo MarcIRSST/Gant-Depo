@@ -1,0 +1,37 @@
+.infobox {
+    margin: 30px 0;
+    padding: 30px;
+    border-radius: 3px;
+
+    h3 {
+        position: relative;
+        margin: 0;
+        padding-left: 40px;
+
+        &::before {
+            @include pseudoElement();
+            top: 0;
+            left: 0;
+            font-family: 'icomoon' !important;
+        }
+    }
+
+    p { @include fontSize(16px, 24px, 400); }
+
+    a { text-decoration: underline; }
+
+    &.warning {
+        h3 { @extend .icon-lightbulb; }
+        background-color: $yellow-pale;
+    }
+
+    &.conseil {
+        h3 { @extend .icon-conseil; }
+        background-color: $yellow-pale;
+    }
+
+    &.danger {
+        h3 { @extend .icon-warning; }
+        background-color: $red-pale;
+    }
+}

@@ -1,0 +1,26 @@
+.fourofour{
+    position: relative;
+    max-height: 85vh;
+    overflow: hidden;
+
+    .contents{
+        max-width: 700px;
+        padding: 20px 70px;
+        background-color: $yellow;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        h1 { margin-bottom: 30px; }
+
+        div { margin: 50px 0; }
+
+        p a{ 
+            text-decoration: underline;
+            font-weight: bold;
+            &:hover{
+                color: $blue;
+            }
+        }
+    }
+}

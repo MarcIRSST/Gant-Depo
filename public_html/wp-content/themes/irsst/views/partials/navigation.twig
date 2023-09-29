@@ -1,0 +1,19 @@
+<ul class="menu-items">
+    {% for item in menu_primary.items %}
+        <li class="{{ item.classes | join(' ') }} main-item">
+            <a href="{{ item.url }}" class="{{ item.children ? 'has-child-link' : '' }} {{ 'guide' in item.title|lower ? 'primary link' : '' }}">{{ item.title }}
+                {% if item.children %}<i class="icon-arrow-down"></i>{% endif %}
+            </a>
+            
+            {% if item.children %}
+                <ul class="child-menu">
+                    {% for subItem in item.children %}
+                        <li class="{{ subItem.classes | join(' ') }} subItem">
+                            <a target="{{ subItem.target }}" href="{{ subItem.link }}">{{ subItem.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

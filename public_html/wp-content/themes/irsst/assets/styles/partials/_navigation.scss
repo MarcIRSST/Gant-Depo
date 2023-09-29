@@ -1,0 +1,198 @@
+#menu {
+    @include flex(center, space-between, row);
+    gap: 40px;
+    z-index: 100;
+
+    .menu-items {
+        display: flex;
+        gap: 40px;
+        padding: 0;
+    }
+
+    .main-item {
+        position: relative;
+        @include flex();
+
+        a {
+            font-family: $primaryFont;
+            color: $blue;
+            @include fontSize(20px, 24px, 500);
+
+            &:not(.link):hover {
+                opacity: 0.6;
+                @include transition($basicTransition);
+            }
+        }
+    }
+
+    .menu-item-has-children {    
+        
+        .has-child-link {
+            display: flex;
+            align-items: center;
+    
+            i {
+                margin-left: 5px;
+            }
+        }
+
+        &:hover {
+            .child-menu {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    
+
+    .child-menu {
+        border-radius: 4px;
+        margin-top: 20px;
+        padding: 30px;
+        z-index: 1100;
+        width: 240px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        background-color: $yellow;
+        @include transition($basicTransition);
+
+        .subItem {
+            margin-bottom: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            a {
+                display: block;
+                @include fontSize(18px, 24px, 400);
+                letter-spacing: 0.4%;
+                font-family: $secondaryFont;
+                padding-right: 10px;
+
+                &:hover {
+                    padding-left: 10px;
+                    padding-right: 0;
+                }
+            }
+        }
+
+        &:before {
+            @include pseudoElement();
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid $yellow;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    #menu {
+
+        .menu-items {
+            gap: 20px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    #menu {
+
+        .cta-header {
+            background-color: white;
+            color: $blue;
+        
+            &:hover {
+                background-color: $blue;
+                color: $grey;
+            }
+        }
+
+        .menu-items {
+            @include transition($basicTransition);
+            gap: 25px;
+            flex-direction: column;
+            position: absolute;
+            align-items: flex-start;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background-color: $yellow;
+            margin-top: 0;
+            z-index: 10;
+            transform: scaleY(0);
+            transform-origin: top;
+            visibility: hidden;
+            padding: 20px 25px 40px;
+
+            .main-item {
+                @include transition($basicTransition);
+                opacity: 0;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                border-bottom: 1px solid rgba($blue, 0.3);
+                padding-bottom: 25px;
+                overflow: hidden;
+
+                a {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .child-menu {
+                    padding: 25px 17px 20px;
+                    top: 0;
+                    visibility: hidden ;
+                    transform-origin: top;
+                    background-color: transparent;
+
+                    &:before {
+                        content: none;
+                    }
+                }
+
+                &.showChildMenu {
+
+                    .has-child-link {
+                        i {
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    .child-menu {
+                        visibility: visible ;
+                        opacity: 1;
+                    }
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
+                    border-bottom: none;
+                }
+            }
+
+            &.open {
+                transform: scaleY(1);
+                visibility: visible;
+
+                .main-item {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

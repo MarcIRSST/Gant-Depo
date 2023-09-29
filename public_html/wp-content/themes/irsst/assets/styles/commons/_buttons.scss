@@ -1,0 +1,137 @@
+a, 
+button, 
+input[type="button"], 
+input[type="submit"] {
+    color: inherit;
+    transition: $buttonTransition;
+    cursor: pointer;
+
+    // Common buttons properties
+    &.link,
+    &.btn {
+        font-family: $primaryFont;
+        @include fontSize(18px, 22px, 600);
+        border: 0 none;
+        border-radius: 4px;
+        color: initial;
+        text-align: center;
+    }
+
+    // Small button
+    &.link {
+        padding: 15px 20px;
+    }
+
+    // Large button
+    &.btn {
+        padding: 25px 50px;
+    }
+
+    // Colors
+    &.primary {
+        background-color: $yellow;
+        
+        &:hover {
+            background-color: $blue;
+            color: $yellow !important;
+        }
+    }
+
+    &.primary-reverse {
+        background-color: transparent;
+        border: 2px solid $yellow;
+        color: $yellow;
+        
+        &:hover {
+            background-color: $yellow;
+            color: white;
+        }
+    }
+
+    &.secondary {
+        background-color: $grey;
+        
+        &:hover {
+            background-color: $blue;
+            color: $grey;
+        }
+    }
+
+    &.white {
+        background-color: white;
+        color: $blue;
+        
+        &:hover {
+            background-color: $blue;
+            color: $grey;
+        }
+    }
+
+    &.blue {
+        background-color: $blue;
+        color: white;
+        
+        &:hover {
+            color: $yellow;
+        }
+    }
+
+    &.red {
+        background-color: $red;
+        color: white;
+        
+        &:hover {
+            background-color: $blue;
+            color: $yellow;
+        }
+    }
+
+    // Greyed-out button
+    &.disabled {
+        background: none;
+        color: rgba($blue, 0.5);
+        pointer-events: none;
+        border: 1px solid $grey;
+    }
+
+    // Circle button 
+    &.circle {
+        @include flex();
+        @extend .btn;
+        @extend .primary;
+        width: 50px;
+        max-width: 50px;
+        height: 50px;
+        max-height: 50px;
+        padding: 0;
+        border-radius: 50%;
+
+        &.small {
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    // Download pdf button - used at the end of the form
+    &.trousse {
+        @extend .btn;
+        @extend .primary;
+
+        display: block;
+        max-width: 320px;
+        margin: 50px auto;
+    }
+
+    @media (max-width: $tablet-large) {
+        &.btn:not(.circle) { 
+            padding: 15px 50px;
+            @include fontSize(16px, 20px, 600, 0.4px); 
+        }
+    }
+
+    @media (max-width: $tablet) {
+        &.btn:not(.circle) { 
+            padding: 15px 20px;
+        }
+    }
+}

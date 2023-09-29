@@ -1,0 +1,126 @@
+.gutenberg {
+    margin-top: 70px;
+    margin-bottom: 120px;
+
+    h2 {
+        position: relative;
+        padding-bottom: 30px;
+
+        &::after {
+            @include pseudoElement();
+            background-color: $yellow;
+            width: 150px;
+            height: 3px;
+            bottom: -2px;
+            left: 0;
+        }
+    }
+
+    img {
+        // object-fit: cover;
+        // width: 100%;
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    // Block Column Style
+
+    .wp-block-columns {
+        
+        &.has-background {
+            border-radius: 3px;
+            padding: 30px;
+        }
+
+        .wp-block-column {
+
+            &.has-background {
+                border-radius: 3px;
+                padding: 30px;
+            }
+        }
+    }
+
+    // Caption Style
+
+    .wp-element-caption {
+        text-align: center;
+    }
+
+    // Block Table Style
+
+    .wp-block-table  {
+
+        th, td {
+            padding: 14px 20px;
+        }
+
+        thead {
+            background-color: $grey;
+
+            tr {
+                border: none;
+            }
+
+            th {
+                color: $blue;
+                font-family: $primaryFont;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 28px;
+                text-align: left;
+            }
+        }
+
+        tbody {
+            tr {
+
+                td {
+                    border-bottom: 1px solid #C9C5B8 !important;
+                    border-style: solid;
+
+                    &:first-child {
+                        font-weight: 700;
+                        font-family: $secondaryFont;
+                    }
+                }
+            }
+        }
+    }
+
+    .wp-element-button, .wp-block-button__link {
+        &[target=_blank], &[href$=".pdf"],&[href$=".doc"]{
+            &:after{
+                font-family: "icomoon";
+                content: "\e903";
+                position: relative;
+                margin-left: 15px;
+                display: inline-block;
+            }
+        }
+
+        &[href$=".pdf"],&[href$=".doc"], &[download]{
+            &:after{
+                content: "\e904";
+            }
+        }
+    }
+
+    .wp-block-button {
+        .has-grey-background-color {
+            &:hover {
+                background-color: $blue !important;
+                color: $grey;
+            }
+        }
+
+        .has-yellow-background-color {
+            &:hover {
+                background-color: $blue !important;
+                color: $yellow;
+            }
+        }
+    }
+}

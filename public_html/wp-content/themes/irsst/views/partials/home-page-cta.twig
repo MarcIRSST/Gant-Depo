@@ -1,0 +1,17 @@
+<div class="home-page-cta">
+    <div class="container">
+
+        <div class="content">
+            <h2 class="title underline">{{ cta.title }}</h2>
+            <div class="text-ctn">
+                <div class="wysiwig">{{ cta.text }}</div>
+                <div class="btn-ctn">
+                    {% if cta.button %}
+                        <a class="button primary btn" href="{{ cta.button.url }}">{{ cta.button.title }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

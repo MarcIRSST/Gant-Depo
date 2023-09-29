@@ -1,0 +1,52 @@
+@import "configs/mixins";
+@import "configs/variables";
+
+.gform_wrapper {
+    @import "commons/global";
+
+    // Hide HTML block details to improve display
+    .gf-html-container span:not(.gf_blockheader) { display: none; }
+
+    // Reduce gfields elements spacing
+    .gform_fields .gfield,
+    .gform_wrapper.gravity-theme .gform_fields .gfield { 
+        margin-bottom: 10px !important; 
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .gfield.hidden_label {
+        // Offset radio/checkboxes when no shown label
+        .gfield_checkbox, .gfield_radio {
+            position: relative;
+            top: -20px;
+        }
+
+        // Completely remove hidden labels
+        .gfield_description { display: none; }
+    }
+
+    // Change display of HTML fields
+    .gfield.hero, .gfield.title, .gfield.question {
+        .gfield_label { 
+            font-family: $primaryFont;
+            word-break: break-word;
+        }
+
+        .gf-html-container { display: none; }
+    }
+
+    .gfield.hero .gfield_label { @include fontSize(50px, 54px, 400); }
+    .gfield.title .gfield_label { @include fontSize(40px, 45px, 500); }
+    .gfield.question .gfield_label { @include fontSize(28px, 34px, 500, -0.5px); }
+
+    // Remove spacing between 'other' description fields and their list
+    .gfield:has(+ .link-previous-field) { 
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important; 
+    }
+
+    .link-previous-field {
+        margin-top: -20px !important;
+    }
+}
